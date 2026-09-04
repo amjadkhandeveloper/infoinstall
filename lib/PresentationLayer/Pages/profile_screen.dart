@@ -85,6 +85,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const ProfileField(
                             label: 'App Version', value: versionCode),
                         const Divider(),
+                        const ProfileField(
+                            label: 'Version Date', value: versionDate),
+                        const Divider(),
                       ],
                     ),
                   )
