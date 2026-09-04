@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../DataLayer/Model/onboard_model.dart';
 
-const versionCode = '1.1.2';
+const versionCode = '1.1.3';
+const versionDate = '04-09-2026';
 
 // const infoInstallProductionURL = "http://180.179.236.125:8008/api/";
 

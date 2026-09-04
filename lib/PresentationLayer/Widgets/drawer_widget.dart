@@ -219,7 +219,7 @@ class DrawerHeaderWidget extends StatelessWidget {
         style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
       ),
       accountEmail: const Text(
-        'App Version : $versionCode',
+        'App Version : $versionCode\n$versionDate',
         style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
       ),
       currentAccountPicture: Container(
