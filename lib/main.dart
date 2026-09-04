@@ -1,9 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:infoinstall/PresentationLayer/Components/print_mixin.dart';
+import 'package:infoinstall/PresentationLayer/Components/ssl_http_client.dart';
 
 import 'PresentationLayer/Pages/splash_screen.dart';
 
 void main() {
+  // ColorOS 13 / some Android 13 OEM builds lack Sectigo Root R46 used by the API.
+  HttpOverrides.global = InfoInstallHttpOverrides();
   runApp(const MyApp());
 }
 

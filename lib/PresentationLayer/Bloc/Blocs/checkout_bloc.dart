@@ -1,11 +1,10 @@
 // Importing necessary Dart packages for JSON decoding, Flutter BLoC, and HTTP requests
 import 'dart:convert';
-import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/io_client.dart';
 import 'package:infoinstall/PresentationLayer/Bloc/Events/checkout_event.dart';
 import 'package:infoinstall/PresentationLayer/Bloc/States/checkout_state.dart';
 import 'package:infoinstall/PresentationLayer/Components/print_mixin.dart';
+import 'package:infoinstall/PresentationLayer/Components/ssl_http_client.dart';
 import 'package:logging/logging.dart';
 import '../../../DomainLayer/Entities/checkout_entity.dart';
 import '../../Components/constant.dart';
@@ -33,10 +32,7 @@ class CheckOutBloc extends Bloc<CheckOutEvent, CheckOutState> with PrintMixin {
           const String url = "$infoInstallProductionURL$jobDeviceUpdate";
           logHttpRequest('POST', url, body: event.requestString);
 
-          final ioc = HttpClient()
-            ..badCertificateCallback =
-                (X509Certificate cert, String host, int port) => true;
-          final httpClient = IOClient(ioc);
+          final httpClient = createInfoInstallIOClient();
           final response = await httpClient.post(Uri.parse(url),
               headers: {
                 'Content-Type': 'application/json',
@@ -83,10 +79,7 @@ class CheckOutBloc extends Bloc<CheckOutEvent, CheckOutState> with PrintMixin {
           }
         } else {
           // Making an HTTP POST request to the quotable.io API to fetch a random CheckOut
-          final ioc = HttpClient()
-            ..badCertificateCallback =
-                (X509Certificate cert, String host, int port) => true;
-          final httpClient = IOClient(ioc);
+          final httpClient = createInfoInstallIOClient();
           const String url = "$infoInstallProductionURL$jobUnitImageUpdate";
           logHttpRequest('POST', url, body: event.requestString);
           final response = await httpClient.post(Uri.parse(url),
